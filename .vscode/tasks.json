@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Rembg: Install Dependencies",
+            "type": "shell",
+            "command": "npm run rembg:install",
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Rembg: Remove Background (Single File)",
+            "type": "shell",
+            "command": "npm run rembg -- ${file} ./assets/rembg_output",
+            "problemMatcher": [],
+            "group": "none"
+        },
+        {
+            "label": "Rembg: Remove Background (Folder)",
+            "type": "shell",
+            "command": "npm run rembg -- ./assets/rembg_input ./assets/rembg_output",
+            "problemMatcher": [],
+            "group": "none"
+        }
+    ]
+}

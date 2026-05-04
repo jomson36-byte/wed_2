@@ -1,0 +1,8 @@
+<svg width="520" height="70" viewBox="0 0 520 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Gold divider ornament</title>
+  <path d="M34 35H194" stroke="#D7A95D" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 10"/>
+  <path d="M326 35H486" stroke="#D7A95D" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 10"/>
+  <path d="M260 18L269 35L260 52L251 35L260 18Z" fill="#D7A95D"/>
+  <path d="M225 35C238 35 244 25 250 25C256 25 260 31 260 35C260 39 256 45 250 45C244 45 238 35 225 35Z" fill="none" stroke="#D7A95D" stroke-width="2"/>
+  <path d="M295 35C282 35 276 25 270 25C264 25 260 31 260 35C260 39 264 45 270 45C276 45 282 35 295 35Z" fill="none" stroke="#D7A95D" stroke-width="2"/>
+</svg>

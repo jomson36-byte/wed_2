@@ -1,0 +1,18 @@
+<svg width="720" height="300" viewBox="0 0 720 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Location label card frame</title>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#B89058" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <path filter="url(#shadow)" d="M66 30H654
+    C682 30 705 53 705 81V222
+    C705 250 682 273 654 273H417
+    C396 273 379 283 360 295
+    C341 283 324 273 303 273H66
+    C38 273 15 250 15 222V81
+    C15 53 38 30 66 30Z"
+    fill="white" stroke="#D7A95D" stroke-width="3"/>
+  <path d="M78 48H642C660 48 675 63 675 81V214C675 232 660 247 642 247H410C390 247 376 256 360 267C344 256 330 247 310 247H78C60 247 45 232 45 214V81C45 63 60 48 78 48Z"
+    fill="none" stroke="#E9C987" stroke-width="1.5" opacity="0.8"/>
+</svg>

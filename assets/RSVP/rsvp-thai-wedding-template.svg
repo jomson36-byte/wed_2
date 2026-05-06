@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400" preserveAspectRatio="none">
+  <title>RSVP card frame mask</title>
+  <g fill="none" stroke="white" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Outer soft card edge with clipped/ornament corners -->
+    <path d="M116 92
+             H884
+             C884 132 868 148 828 148
+             H172
+             C132 148 116 132 116 92
+             Z" opacity="0"/>
+    <path d="M116 92 H884
+             Q884 135 927 135
+             V1265
+             Q884 1265 884 1308
+             H116
+             Q116 1265 73 1265
+             V135
+             Q116 135 116 92 Z"/>
+
+    <!-- Inner fine line -->
+    <path d="M148 130 H852
+             Q852 164 886 164
+             V1236
+             Q852 1236 852 1270
+             H148
+             Q148 1236 114 1236
+             V164
+             Q148 164 148 130 Z"
+          stroke-width="8"/>
+  </g>
+</svg>

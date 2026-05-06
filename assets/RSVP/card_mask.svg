@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="90 190 820 1020" preserveAspectRatio="none">
+  <title>RSVP card filled mask</title>
+  <path fill="white" d="M146 214
+           H854
+           Q854 250 890 250
+           V1150
+           Q854 1150 854 1186
+           H146
+           Q146 1150 110 1150
+           V250
+           Q146 250 146 214 Z"/>
+</svg>

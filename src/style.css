@@ -676,117 +676,198 @@ button {
 .dc-palette-list {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: clamp(8px, 2.5vw, 15px);
+    flex-wrap: nowrap;
+    margin: 4px 0;
 }
 
 .dc-palette-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
 }
 
 .dc-swatch {
-    width: clamp(40px, 10vw, 55px);
-    height: clamp(40px, 10vw, 55px);
+    width: clamp(38px, 10vw, 52px);
+    height: clamp(38px, 10vw, 52px);
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid rgba(194, 163, 107, 0.3);
+    border: 1px solid rgba(194, 163, 107, 0.4);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .dc-palette-item span {
-    font-family: var(--font-thai);
-    font-size: 10px;
-    color: var(--clr-text-main);
-    opacity: 0.8;
+    font-family: var(--font-serif);
+    font-size: 9px;
+    color: #8c734b; /* Gold/Brown from Ref */
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    font-weight: 500;
 }
 
 /* Ladies & Gentlemen */
 .dc-lg-section {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
+    margin: 8px 0;
 }
 
 .dc-lg-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
+    flex: 1;
 }
 
 .dc-lg-icon {
-    width: 45px;
-    height: auto;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-top: -5px;
 }
 
 .dc-lg-divider {
     height: 60px;
-    width: auto;
+    width: 1px;
+    opacity: 0.4;
+}
+
+.dc-lg-text {
+    text-align: left;
 }
 
 .dc-lg-text h4 {
     font-family: var(--font-serif);
-    font-size: 16px;
-    color: var(--clr-muted-gold);
+    font-size: clamp(12px, 3.2vw, 15px);
+    color: #b08d57; /* Muted Gold/Brown */
     margin-bottom: 2px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    line-height: 1.2;
 }
 
 .dc-lg-text p {
     font-family: var(--font-serif);
-    font-size: 11px;
-    line-height: 1.3;
-    color: var(--clr-text-main);
-    opacity: 0.9;
+    font-size: clamp(9px, 2.2vw, 10.5px);
+    line-height: 1.4;
+    color: #3e4b3d;
 }
 
 /* Venue Note */
 .dc-venue-note {
-    max-width: 450px;
+    width: 52% !important;
+    max-width: 260px;
+    margin-top: -0.5vh;
+    position: relative;
+    border: 1px solid rgba(194, 163, 107, 0.6);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
 }
 
 .dc-vn-content {
-    position: absolute;
-    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 15% 5%;
-    gap: 15px;
+    gap: 8px;
+    width: 100%;
 }
 
 .dc-vn-icon {
-    width: 50px;
+    width: min(10vw, 40px);
     height: auto;
-    margin-top: -10px;
+    margin-top: -5px;
+}
+
+.dc-vn-text {
+    text-align: left;
 }
 
 .dc-vn-text h5 {
     font-family: var(--font-serif);
-    font-size: 14px;
-    color: var(--clr-muted-gold);
-    margin-bottom: 4px;
-    letter-spacing: 0.1em;
+    font-size: clamp(9px, 2.8vw, 12px);
+    color: #b08d57;
+    margin-bottom: 2px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
 }
 
 .dc-vn-text p {
-    font-family: var(--font-thai);
-    font-size: 11px;
-    line-height: 1.4;
-    color: var(--clr-text-main);
-    opacity: 0.8;
+    font-family: var(--font-serif);
+    font-size: clamp(8px, 2.2vw, 10px);
+    line-height: 1.5;
+    color: #3e4b3d;
 }
 
 .dc-vn-bottom-divider {
     position: absolute;
-    bottom: -8px;
+    bottom: -6px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%;
+    width: 50px;
+}
+
+/* --- RSVP Section --- */
+.rsvp-integrated-wrapper {
+    pointer-events: none;
+}
+
+.rsvp-card-shell {
+    position: relative;
+    width: min(94vw, 520px);
+    aspect-ratio: 1000 / 1400;
+    filter:
+        drop-shadow(0 34px 34px rgba(89, 77, 51, 0.14))
+        drop-shadow(0 12px 16px rgba(89, 77, 51, 0.08));
+}
+
+.rsvp-card-shell::after {
+    content: '';
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 12.5%;
+    height: 28px;
+    background: radial-gradient(ellipse at center, rgba(76, 67, 48, 0.18) 0%, rgba(76, 67, 48, 0.09) 45%, rgba(76, 67, 48, 0) 72%);
+    filter: blur(10px);
+    opacity: 0.75;
+    transform: translateY(18px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.rsvp-card-texture {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(rgba(255, 252, 244, 0.04), rgba(255, 252, 244, 0.04)),
+        url('../assets/RSVP/card_texture.png') center / cover no-repeat;
+    -webkit-mask-image: url('../assets/RSVP/card_mask.svg');
+    mask-image: url('../assets/RSVP/card_mask.svg');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    opacity: 0.96;
+}
+
+.rsvp-card-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    mix-blend-mode: multiply;
 }
 
 @media (max-width: 400px) {

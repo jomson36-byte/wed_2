@@ -15,6 +15,7 @@ const DC = 'assets/dress_code_assets_white_bg/';
 const DCP = `${DC}color_palette_assets_no_text/`;
 const DCLG = `${DC}ladies_gentlemen_icons_assets/`;
 const DCVN = `${DC}venue_note_assets_no_text/`;
+const RSVP = 'assets/RSVP/';
 const donutImage = `${SC}donut-cake.png`;
 
 // 0. Global Frame Layer (Fixed Corner Flowers)
@@ -169,20 +170,47 @@ function Hero() {
 
   // Location ranges (shifted for 1000vh)
   const locationY = useTransform(scrollYProgress, [0.624, 0.704, 0.8], ['100vh', '0vh', '0vh']);
-  const locationOpacity = useTransform(scrollYProgress, [0.624, 0.704, 0.82], [0, 1, 0]);
+  const locationOpacity = useTransform(scrollYProgress, [0.624, 0.704, 0.78, 0.82], [0, 1, 1, 0]);
   const locationPhotoOpacity = useTransform(scrollYProgress, [0.624, 0.704, 0.8], [0, 1, 1]);
   const locationPhotoScale = useTransform(scrollYProgress, [0.624, 0.704, 0.8], [0.95, 1, 1]);
   
   const locationLabelY = useTransform(scrollYProgress, [0.656, 0.72, 0.8], [60, 0, 0]);
   const locationLabelOpacity = useTransform(scrollYProgress, [0.656, 0.72, 0.8], [0, 1, 1]);
   
+  const locationLabelContentY = useTransform(scrollYProgress, [0.7, 0.76, 0.8], [20, 0, 0]);
+  const locationLabelContentOpacity = useTransform(scrollYProgress, [0.7, 0.76, 0.8], [0, 1, 1]);
+  
   const locationContentY = useTransform(scrollYProgress, [0.624, 0.704, 0.8], [40, 0, 0]);
   const locationPhotoY = useTransform(scrollYProgress, [0.72, 0.8], ['5%', '-5%']);
 
-  // Dress Code ranges (0.78 to 1.0)
-  const dressCodeY = useTransform(scrollYProgress, [0.78, 0.88, 1], ['100vh', '0vh', '0vh']);
-  const dressCodeOpacity = useTransform(scrollYProgress, [0.78, 0.88, 1], [0, 1, 1]);
-  const dressCodeContentY = useTransform(scrollYProgress, [0.8, 0.9, 1], [40, 0, 0]);
+  // Dress Code ranges
+  const dressCodeY = useTransform(scrollYProgress, [0.75, 0.84, 0.9, 0.96], ['100vh', '0vh', '0vh', '-16vh']);
+  const dressCodeOpacity = useTransform(scrollYProgress, [0.75, 0.82, 0.9, 0.96], [0, 1, 1, 0]);
+  
+  const dcTitleTopY = useTransform(scrollYProgress, [0.75, 0.85, 1], [60, 0, 0]);
+  const dcTitleTextY = useTransform(scrollYProgress, [0.77, 0.87, 1], [100, 0, 0]);
+  const dcTitleBottomY = useTransform(scrollYProgress, [0.79, 0.89, 1], [140, 0, 0]);
+  
+  const dcTitleTopOpacity = useTransform(scrollYProgress, [0.75, 0.82, 1], [0, 1, 1]);
+  const dcTitleTextOpacity = useTransform(scrollYProgress, [0.77, 0.84, 1], [0, 1, 1]);
+  const dcTitleBottomOpacity = useTransform(scrollYProgress, [0.79, 0.86, 1], [0, 1, 1]);
+  const dcVisualsY = useTransform(scrollYProgress, [0.81, 0.89], [80, 0]);
+  const dcPaletteY = useTransform(scrollYProgress, [0.83, 0.91], [110, 0]);
+  const dcLGY = useTransform(scrollYProgress, [0.85, 0.93], [140, 0]);
+  const dcVNY = useTransform(scrollYProgress, [0.87, 0.95], [170, 0]);
+  const dcSwatchScale = useTransform(scrollYProgress, [0.83, 0.88], [0.5, 1]);
+  const dcIconScale = useTransform(scrollYProgress, [0.85, 0.90], [0.5, 1]);
+
+  const dcSuitX = useTransform(scrollYProgress, [0.78, 0.88, 1], [40, 0, 0]);
+  const dcDressX = useTransform(scrollYProgress, [0.78, 0.88, 1], [-40, 0, 0]);
+  const dcClothesOpacity = useTransform(scrollYProgress, [0.78, 0.85, 1], [0, 1, 1]);
+  const dcClothesScale = useTransform(scrollYProgress, [0.78, 0.88, 1], [0.9, 1, 1]);
+
+  // RSVP ranges
+  const rsvpY = useTransform(scrollYProgress, [0.9, 0.98, 1], ['100vh', '0vh', '0vh']);
+  const rsvpOpacity = useTransform(scrollYProgress, [0.9, 0.96, 1], [0, 1, 1]);
+  const rsvpCardY = useTransform(scrollYProgress, [0.92, 0.985], [70, 0]);
+  const rsvpCardScale = useTransform(scrollYProgress, [0.92, 0.985], [0.94, 1]);
 
 
   useEffect(() => {
@@ -721,7 +749,7 @@ function Hero() {
             src: `${LC}11_location_label_frame_gold.svg`,
             style: { width: '100%', display: 'block' }
           }),
-          h('div', {
+          h(motion.div, {
             className: 'location-label-content',
             style: { 
               position: 'absolute', 
@@ -732,7 +760,9 @@ function Hero() {
               justifyContent: 'center',
               color: '#55705a',
               paddingTop: '0%',
-              paddingBottom: '1%'
+              paddingBottom: '1%',
+              y: locationLabelContentY,
+              opacity: locationLabelContentOpacity
             }
           },
             h('p', { style: { margin: '2px 0', fontSize: 'min(4.5vw, 18px)', letterSpacing: '0.1em' } }, 'Sa Kaeo'),
@@ -784,112 +814,144 @@ function Hero() {
             backgroundColor: 'transparent'
           }
         },
-        // Background Ribbon
-        h(motion.img, {
-          src: `${DC}12_pink_ribbon_back.png`,
-          style: { 
-            position: 'absolute', 
-            top: '5%', 
-            width: '100%', 
-            mixBlendMode: 'multiply', 
-            zIndex: -1,
-            opacity: 0.6
-          }
-        }),
 
-        // Title
-        h('div', { 
+        // Title (Vertical Flourish Set: 01a, 01b, 01c)
+        h(motion.div, { 
+          className: 'dc-title-group',
           style: { 
             display: 'flex', 
+            flexDirection: 'column', 
             alignItems: 'center', 
             justifyContent: 'center', 
-            gap: '15px', 
+            gap: '8px', 
             width: '90%', 
-            marginBottom: '10px',
-            y: dressCodeContentY,
+            marginTop: '0vh',
+            marginBottom: '15px',
+            y: 0,
             position: 'relative',
-            zIndex: 2
-          } 
+            zIndex: 10
+          }
         },
-          h(motion.img, { src: `${DCP}01_gold_flourish_left.png`, style: { width: '60px', mixBlendMode: 'multiply' } }),
-          h(motion.img, { src: `${DC}01b_title_dress_code_text.png`, style: { width: 'min(50vw, 240px)', mixBlendMode: 'multiply' } }),
-          h(motion.img, { src: `${DCP}02_gold_flourish_right.png`, style: { width: '60px', mixBlendMode: 'multiply' } })
+          h(motion.img, { 
+            src: `${DC}01a_title_gold_top_flourish.png`, 
+            style: { width: 'min(22vw, 90px)', y: dcTitleTopY, opacity: dcTitleTopOpacity } 
+          }),
+          h(motion.img, { 
+            src: `${DC}01b_title_dress_code_text.png`, 
+            style: { width: 'min(55vw, 260px)', marginTop: '-10px', y: dcTitleTextY, opacity: dcTitleTextOpacity } 
+          }),
+          h(motion.img, { 
+            src: `${DC}01c_title_gold_bottom_divider.png`, 
+            style: { width: 'min(30vw, 130px)', marginTop: '5px', y: dcTitleBottomY, opacity: dcTitleBottomOpacity } 
+          })
         ),
 
         // Dress Visuals Wrap with Gold Arch Frame
-        h('div', {
+        h(motion.div, {
           className: 'dc-visuals-wrap',
           style: {
             position: 'relative',
-            width: '85%',
-            maxWidth: '420px',
-            marginTop: '-1vh',
-            marginBottom: '1vh',
+            width: '95%',
+            maxWidth: '500px',
+            height: '42vh', // Explicit height to contain absolute elements
+            marginTop: '-2vh',
+            marginBottom: '2vh',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            zIndex: 10,
+            y: dcVisualsY
           }
         },
-          // Flowers framing the dresses (Moved from bottom)
+          h(motion.img, {
+            src: `${DC}12_pink_ribbon_back.png`,
+            style: { 
+              position: 'absolute', 
+              top: '38%', 
+              width: '100%', 
+              maxWidth: 'none', 
+              left: '-1%', 
+              zIndex: 1, 
+              opacity: 0.7 
+            },
+            animate: { x: [-10, 10, -10], opacity: [0.6, 0.8, 0.6] },
+            transition: { duration: 15, repeat: Infinity, ease: "easeInOut" }
+          }),
+          // Flowers framing the dresses (Behind dresses)
           h(motion.img, {
             src: `${DC}06_floral_left_lower.png`,
-            style: { position: 'absolute', bottom: '-5%', left: '-12%', width: '45%', mixBlendMode: 'multiply', zIndex: 3 }
+            style: { position: 'absolute', bottom: '22%', left: '11%', width: '24%', zIndex: 12 },
+            animate: { rotate: [-1, 2, -1], y: [0, 5, 0] },
+            transition: { duration: 7, repeat: Infinity, ease: "easeInOut" }
           }),
           h(motion.img, {
             src: `${DC}07_floral_right_lower_with_gold_flourish.png`,
-            style: { position: 'absolute', bottom: '-8%', right: '-15%', width: '55%', mixBlendMode: 'multiply', zIndex: 3 }
+            style: { position: 'absolute', bottom: '12%', right: '10%', width: '38%', zIndex: 12 },
+            animate: { rotate: [1, -2, 1], y: [0, -5, 0] },
+            transition: { duration: 9, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
           }),
-          // Arch Frame
+          // Arch Frame (Behind dresses)
           h(motion.img, {
             src: `${DC}11_gold_arch_frame.png`,
             style: {
               position: 'absolute',
-              inset: 0,
+              top: '-1%',
+              left: '2%',
               width: '100%',
-              height: '100%',
+              height: '102%',
               objectFit: 'contain',
-              mixBlendMode: 'multiply',
-              zIndex: 1
+              zIndex: 2,
+              opacity: 1,
+              clipPath: 'inset(0 0 25% 0)' // Cropping the bottom 25%
             }
           }),
-          // Dresses Row
-          h('div', { 
-            className: 'dc-visuals-row',
+          
+          // 1. Groom's Suit (BEHIND - Leftish but overlaps)
+          h(motion.img, {
+            src: `${DC}03_groom_suit_dark_green.png`,
             style: { 
-              display: 'flex', 
-              justifyContent: 'center', 
-              alignItems: 'flex-end', 
-              gap: '5px',
-              width: '80%',
-              padding: '20px 0',
-              position: 'relative',
-              zIndex: 2
+              position: 'absolute',
+              right: '22%',
+              top: '12%',
+              width: '30%',
+              zIndex: 11,
+              x: dcSuitX,
+              opacity: dcClothesOpacity,
+              scale: dcClothesScale
             }
-          },
-            h(motion.img, {
-              src: `${DC}02_bride_dress.png`,
-              style: { width: '48%', mixBlendMode: 'multiply' }
-            }),
-            h(motion.img, {
-              src: `${DC}03_groom_suit_dark_green.png`,
-              style: { width: '48%', mixBlendMode: 'multiply' }
-            })
-          )
+          }),
+
+          // 2. Bride's Dress (FRONT - Overlapping the suit)
+          h(motion.img, {
+            src: `${DC}02_bride_dress.png`,
+            style: { 
+              position: 'absolute',
+              left: '22%',
+              top: '12%',
+              width: '35%',
+              zIndex: 13,
+              x: dcDressX,
+              opacity: dcClothesOpacity,
+              scale: dcClothesScale
+            }
+          })
         ),
 
         // Color Palette
-        h('div', { className: 'dc-palette-container', style: { width: '90%', marginBottom: '2vh' } },
+        h(motion.div, { className: 'dc-palette-container', style: { width: '90%', marginBottom: '2vh', marginTop: '-6vh', y: dcPaletteY } },
           h('div', { className: 'dc-palette-list' },
             [
               { src: '03_sage_green_texture_1x1.png', label: 'Sage' },
               { src: '04_ivory_texture_1x1.png', label: 'Ivory' },
               { src: '05_beige_texture_1x1.png', label: 'Beige' },
-              { src: '06_dusty_pink_texture_1x1.png', label: 'Pink' },
-              { src: '07_soft_peach_texture_1x1.png', label: 'Peach' },
               { src: '08_light_brown_texture_1x1.png', label: 'Brown' }
             ].map((c, idx) => 
-              h('div', { key: idx, className: 'dc-palette-item' },
-                h('img', { src: `${DCP}${c.src}`, className: 'dc-swatch', style: { mixBlendMode: 'multiply' } }),
+              h(motion.div, { 
+                key: idx, 
+                className: 'dc-palette-item',
+                style: { scale: dcSwatchScale }
+              },
+                h('img', { src: `${DCP}${c.src}`, className: 'dc-swatch', style: { } }),
                 h('span', null, c.label)
               )
             )
@@ -897,17 +959,25 @@ function Hero() {
         ),
 
         // Ladies & Gentlemen Section
-        h('div', { className: 'dc-lg-section', style: { width: '90%', marginBottom: '2vh' } },
+        h(motion.div, { className: 'dc-lg-section', style: { width: '90%', marginBottom: '2vh', y: dcLGY } },
           h('div', { className: 'dc-lg-item' },
-            h('img', { src: `${DCLG}01_icon_ladies_dress.png`, className: 'dc-lg-icon', style: { mixBlendMode: 'multiply' } }),
+            h(motion.img, { 
+              src: `${DCLG}01_icon_ladies_dress.png`, 
+              className: 'dc-lg-icon', 
+              style: { scale: dcIconScale } 
+            }),
             h('div', { className: 'dc-lg-text' },
               h('h4', null, 'LADIES'),
               h('p', null, 'Dresses in soft tones,', h('br'), 'satin, or light fabrics.')
             )
           ),
-          h('img', { src: `${DCLG}03_vertical_divider_gold.png`, className: 'dc-lg-divider', style: { mixBlendMode: 'multiply' } }),
+          h('img', { src: `${DCLG}03_vertical_divider_gold.png`, className: 'dc-lg-divider', style: { } }),
           h('div', { className: 'dc-lg-item' },
-            h('img', { src: `${DCLG}02_icon_gentlemen_suit.png`, className: 'dc-lg-icon', style: { mixBlendMode: 'multiply' } }),
+            h(motion.img, { 
+              src: `${DCLG}02_icon_gentlemen_suit.png`, 
+              className: 'dc-lg-icon', 
+              style: { scale: dcIconScale } 
+            }),
             h('div', { className: 'dc-lg-text' },
               h('h4', null, 'GENTLEMEN'),
               h('p', null, 'Suits or shirts in neutral', h('br'), 'or earthy tones.')
@@ -916,16 +986,55 @@ function Hero() {
         ),
 
         // Venue Note Section
-        h('div', { className: 'dc-venue-note', style: { width: '85%', position: 'relative' } },
-          h('img', { src: `${DCVN}01_venue_note_outer_frame.png`, className: 'dc-vn-frame', style: { width: '100%', mixBlendMode: 'multiply' } }),
+        h(motion.div, { className: 'dc-venue-note', style: { y: dcVNY, scale: dcIconScale } },
           h('div', { className: 'dc-vn-content' },
-            h('img', { src: `${DCVN}02_high_heel_icon.png`, className: 'dc-vn-icon', style: { mixBlendMode: 'multiply' } }),
+            h(motion.img, { 
+              src: `${DCVN}02_high_heel_icon.png`, 
+              className: 'dc-vn-icon', 
+              style: { } 
+            }),
             h('div', { className: 'dc-vn-text' },
               h('h5', null, 'VENUE NOTE'),
-              h('p', null, 'Outdoor garden venue with grass.', h('br'), 'Block heels or flats are recommended.')
+              h('p', null, 'The garden venue is not suitable for high heels.')
             )
-          ),
-          h('img', { src: `${DCVN}03_bottom_flourish_divider.png`, className: 'dc-vn-bottom-divider', style: { mixBlendMode: 'multiply' } })
+          )
+        )
+      ),
+
+      // RSVP SECTION
+      h(
+        motion.div,
+        {
+          className: 'rsvp-integrated-wrapper',
+          style: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            y: rsvpY,
+            opacity: rsvpOpacity,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 30,
+            backgroundColor: 'transparent',
+            padding: '6vh 24px'
+          }
+        },
+        h(motion.div, {
+          className: 'rsvp-card-shell',
+          style: {
+            y: rsvpCardY,
+            scale: rsvpCardScale
+          }
+        },
+          h('div', { className: 'rsvp-card-texture' }),
+          h('img', {
+            src: `${RSVP}frame.svg`,
+            className: 'rsvp-card-frame',
+            alt: ''
+          })
         )
       ),
 
@@ -952,7 +1061,7 @@ function Hero() {
 export default function App() {
   return h(
     'div',
-    { className: 'card-container', style: { height: '1000vh' } },
+    { className: 'card-container', style: { height: '1150vh' } },
     h(GlobalFrame),
     h(Petals),
     h(Hero)

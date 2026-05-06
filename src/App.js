@@ -120,6 +120,7 @@ function Hero() {
   const [loaderHidden, setLoaderHidden] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [canScroll, setCanScroll] = useState(false);
+  const [guestCount, setGuestCount] = useState(1);
 
   useEffect(() => {
     // Safety fallback: Force unlock scroll after 3.5 seconds
@@ -226,6 +227,15 @@ function Hero() {
       bgMusic.play().catch(() => console.log('Audio play failed'));
     }
     setIsPlaying((current) => !current);
+  };
+
+  const updateGuestCount = (value) => {
+    const parsedValue = Number.parseInt(value, 10);
+    if (Number.isNaN(parsedValue)) {
+      setGuestCount(1);
+      return;
+    }
+    setGuestCount(Math.min(9, Math.max(1, parsedValue)));
   };
 
   const containerVariants = {
@@ -1022,6 +1032,11 @@ function Hero() {
             padding: '6vh 24px'
           }
         },
+        h('img', {
+          src: `${RSVP}01.png`,
+          className: 'rsvp-top-ornament',
+          alt: ''
+        }),
         h(motion.div, {
           className: 'rsvp-card-shell',
           style: {
@@ -1030,11 +1045,101 @@ function Hero() {
           }
         },
           h('div', { className: 'rsvp-card-texture' }),
+          h('form', { className: 'rsvp-form', id: 'rsvp-form' },
+            h('div', { className: 'rsvp-form-heading' },
+              h('img', {
+                src: `${RSVP}RSVP.png`,
+                className: 'rsvp-title-image',
+                alt: 'RSVP'
+              }),
+              h('img', {
+                src: `${RSVP}03.png`,
+                className: 'rsvp-divider-image',
+                alt: ''
+              }),
+              h('p', { className: 'rsvp-subtitle' },
+                'Please kindly confirm your attendance',
+                h('br'),
+                'Reply by ',
+                h('span', null, '20.12.26')
+              )
+            ),
+            h('label', { className: 'rsvp-field' },
+              h('span', null, 'Name - Surname'),
+              h('input', {
+                type: 'text',
+                name: 'name',
+                placeholder: 'Write your name'
+              })
+            ),
+            h('label', { className: 'rsvp-field' },
+              h('span', null, 'Phone Number'),
+              h('input', {
+                type: 'tel',
+                name: 'phone',
+                placeholder: 'Write your phone number'
+              })
+            ),
+            h('div', { className: 'rsvp-field' },
+              h('span', null, 'Number of Guests'),
+              h('div', { className: 'rsvp-stepper' },
+                h('button', {
+                  type: 'button',
+                  'aria-label': 'Decrease guest count',
+                  onClick: () => updateGuestCount(guestCount - 1)
+                }, '-'),
+                h('input', {
+                  type: 'number',
+                  name: 'guests',
+                  min: '1',
+                  max: '9',
+                  value: guestCount,
+                  onChange: (event) => updateGuestCount(event.target.value),
+                  inputMode: 'numeric',
+                  'aria-label': 'Number of guests'
+                }),
+                h('button', {
+                  type: 'button',
+                  'aria-label': 'Increase guest count',
+                  onClick: () => updateGuestCount(guestCount + 1)
+                }, '+')
+              )
+            ),
+            h('label', { className: 'rsvp-field' },
+              h('span', null, 'Message'),
+              h('textarea', {
+                name: 'message',
+                rows: 3,
+                placeholder: 'Leave a note'
+              })
+            ),
+            h('div', { className: 'rsvp-submit-spacer' })
+          ),
+          h('button', {
+            className: 'rsvp-wax-submit',
+            type: 'submit',
+            form: 'rsvp-form',
+            'aria-label': 'Send RSVP'
+          },
+            h('img', {
+              src: `${RSVP}wax.png`,
+              alt: ''
+            })
+          ),
           h('img', {
             src: `${RSVP}frame.svg`,
             className: 'rsvp-card-frame',
             alt: ''
           })
+        ),
+        h('div', { className: 'rsvp-closing' },
+          h('img', {
+            src: `${RSVP}03.png`,
+            className: 'rsvp-closing-divider',
+            alt: ''
+          }),
+          h('p', null, 'We look forward to celebrating with you'),
+          h('small', null, 'กรุณากรอกข้อมูลเพื่อยืนยันการเข้าร่วมงาน')
         )
       ),
 

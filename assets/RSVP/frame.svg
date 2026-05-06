@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="90 190 820 1020" preserveAspectRatio="none">
   <title>RSVP card gold frame</title>
   <g fill="none" stroke="#c98a2b" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M188 258
-             H812
-             Q812 288 842 288
-             V1112
-             Q812 1112 812 1142
-             H188
-             Q188 1112 158 1112
-             V288
-             Q188 288 188 258 Z"
+    <path d="M148 230
+             H852
+             Q852 260 882 260
+             V1140
+             Q852 1140 852 1170
+             H148
+             Q148 1140 118 1140
+             V260
+             Q148 260 148 230 Z"
           stroke-width="2.6" opacity=".62"/>
   </g>
 </svg>
